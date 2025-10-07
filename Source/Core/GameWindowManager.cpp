@@ -1,26 +1,26 @@
 #include "Core/GameWindowManger.h"
 
 namespace Core{
-	void GameWindowManger::initialize() {
-		gameWindow = new RenderWindow();
+	void GameWindowManager::initialize() {
+		gameWindow = new sf::RenderWindow();
 		createGameWindow();
 	}
 
-	void GameWindowManger::createGameWindow() {
-		gameWindow->create(VideoMode::getDesktopMode(), gameWindowTitle, Style::Fullscreen);
+	void GameWindowManager::createGameWindow() {
+		gameWindow->create(sf::VideoMode::getDesktopMode(), gameWindowTitle, sf::Style::Default);
 	}
 
-	bool GameWindowManger::isGameRunning() {
+	bool GameWindowManager::isGameRunning() {
 		return gameWindow->isOpen();
 	}
 
-	void GameWindowManger::render() {
-		gameWindow->clear(Color(200, 50, 50, 255));
+	void GameWindowManager::render() {
+		gameWindow->clear(sf::Color(200, 50, 50, 255));
 
 		gameWindow->display();
 	}
 
-	RenderWindow* GameWindowManger::getGameWindow() {
+	sf::RenderWindow* GameWindowManager::getGameWindow() {
 		return gameWindow;
 	}
 }

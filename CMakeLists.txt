@@ -10,7 +10,7 @@ endif()
 
 file(GLOB_RECURSE SOURCES
     "Main.cpp"
-    "Source/*.cpp"
+    "Source/**/*.cpp"
 )
 file(GLOB_RECURSE HEADERS
     "Header/**/*.h"

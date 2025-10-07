@@ -2,13 +2,11 @@
 
 #include <SFML/Graphics.hpp>
 
-using namespace sf;
-
 namespace Core{
-	class GameWindowManger {
+	class GameWindowManager {
 	public:
 		void initialize();
-		RenderWindow* getGameWindow();
+		sf::RenderWindow* getGameWindow();
 		bool isGameRunning();
 		void render();
 	private:
@@ -16,7 +14,7 @@ namespace Core{
 		int gameWindowHeight = 720;
 		std::string gameWindowTitle = "SFML Pong";
 
-		RenderWindow* gameWindow;
+		sf::RenderWindow* gameWindow;
 
 		void createGameWindow();
 	};
