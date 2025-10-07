@@ -9,11 +9,11 @@ set(CMAKE_BUILD_TYPE Debug)
 endif()
 
 file(GLOB_RECURSE SOURCES
-"Main.cpp"
-"Source/*.cpp"
+    "Main.cpp"
+    "Source/*.cpp"
 )
 file(GLOB_RECURSE HEADERS
-"Header/**/*.h"
+    "Header/**/*.h"
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
@@ -24,23 +24,23 @@ set(SFML_INCLUDE_DIR "${SFML_ROOT}/include")
 set(SFML_LIBRARY_DIR "${SFML_ROOT}/lib")
 
 # Include and link manually
-target_include_directories(${PROJECT_NAME} PRIVATE ${SFML_INCLUDE_DIR})
+target_include_directories(${PROJECT_NAME} PRIVATE ${SFML_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/Header)
 target_link_directories(${PROJECT_NAME} PRIVATE ${SFML_LIBRARY_DIR})
 target_link_libraries(${PROJECT_NAME}
-PRIVATE
-sfml-graphics
-sfml-window
-sfml-system
-sfml-audio
-sfml-network
+    PRIVATE
+    sfml-graphics
+    sfml-window
+    sfml-system
+    sfml-audio
+    sfml-network
 )
 
 if(UNIX)
-target_compile_definitions(${PROJECT_NAME} PRIVATE SFML_STATIC=0)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE SFML_STATIC=0)
 endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
-RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 
 message(STATUS "Pong-SFML configured using local SFML folder in project root.")
