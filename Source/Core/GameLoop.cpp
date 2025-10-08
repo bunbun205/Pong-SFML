@@ -1,11 +1,14 @@
 #include <Core/GameLoop.h>
 
+#include "Sound/SoundManager.h"
+
 namespace Core{
 	void GameLoop::initialize() {
 		gameWindowManager = new GameWindowManager();
 		eventManager = new Event::EventManager();
-		gameWindowManager->initialize();
 		gameplayManager = new GamePlay::GameplayManager(eventManager);
+		Sound::SoundManager::Initialize();
+		gameWindowManager->initialize();
 	}
 
 	bool GameLoop::isGameRunning() {
