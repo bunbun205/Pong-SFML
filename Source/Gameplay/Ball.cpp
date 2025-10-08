@@ -1,6 +1,8 @@
 #include <Gameplay/Ball.h>
 #include <oneapi/tbb/task_group.h>
 
+#include "Sound/SoundManager.h"
+
 namespace GamePlay{
 	Ball::Ball() {
 		loadTexture();
@@ -87,6 +89,7 @@ namespace GamePlay{
 		if ((ballRect.intersects(paddle1Rect) &&  velocity.x < 0) ||
 			(ballRect.intersects(paddle2Rect) && velocity.x > 0)) {
 			velocity.x *= -1;
+			Sound::SoundManager::PlaySoundEffect(Sound::SoundType::BALL_BOUNCE);
 		}
 	}
 
@@ -96,6 +99,7 @@ namespace GamePlay{
 		if ((ballRect.top <= topBoundary && velocity.y < 0) ||
 			(ballRect.top + ballRect.height >= bottomBoundary && velocity.y > 0)) {
 			velocity.y *= -1;
+			Sound::SoundManager::PlaySoundEffect(Sound::SoundType::BALL_BOUNCE);
 		}
 	}
 
