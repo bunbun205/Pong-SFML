@@ -7,8 +7,8 @@ namespace GamePlay{
 		initializeVariables();
 	}
 
-	void Ball::update(Paddle* paddle1, Paddle* paddle2) {
-		move();
+	void Ball::update(Paddle* paddle1, Paddle* paddle2, Utility::TimeService* timeService) {
+		move(timeService);
 		onCollision(paddle1, paddle2);
 	}
 
@@ -26,14 +26,31 @@ namespace GamePlay{
 		pongBallSprite.setTexture(pongBallTexture);
 		pongBallSprite.setScale(scaleX, scaleY);
 		pongBallSprite.setPosition(xPos, yPos);
+		currentState = BallState::Idle;
 	}
 
-	void Ball::move() {
-		pongBallSprite.move(velocity);
+	void Ball::move(Utility::TimeService* timeService) {
+		updateDelayTime(timeService->getDeltaTime());
+		if (currentState == BallState::Moving) {
+			pongBallSprite.move(velocity * timeService->getDeltaTime() * speedMultiplier);
+		}
+	}
+
+	void Ball::updateDelayTime(float deltaTime) {
+		if (currentState == BallState::Idle) {
+			elapsedTime += deltaTime;
+			if (elapsedTime >= delayDuration) {
+				currentState = BallState::Moving;
+			} else {
+				return;
+			}
+		}
 	}
 
 	void Ball::reset() {
-		pongBallSprite.setPosition(centerXPos, centerXPos);
+		elapsedTime = 0.f;
+		currentState = BallState::Idle;
+		pongBallSprite.setPosition(centerXPos, centerYPos);
 		velocity = sf::Vector2f(ballSpeed, ballSpeed);
 	}
 

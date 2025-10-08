@@ -3,16 +3,21 @@
 #include "SFML/Graphics.hpp"
 
 namespace GamePlay{
+	enum class BallState {
+		Idle,
+		Moving
+	};
 	class Ball {
 	public:
 		Ball();
 
-		void update(Paddle* paddle1, Paddle* paddle2);
+		void update(Paddle* paddle1, Paddle* paddle2, Utility::TimeService* timeService);
 		void render(sf::RenderWindow* window);
 	private:
 		void loadTexture();
 		void initializeVariables();
-		void move();
+		void move(Utility::TimeService* timeService);
+		void updateDelayTime(float deltaTime);
 		void reset();
 		void onCollision(Paddle* paddle1, Paddle* paddle2);
 		void handlePaddleCollision(Paddle* paddle1, Paddle* paddle2);
@@ -20,7 +25,13 @@ namespace GamePlay{
 		void handelOutOfBoundCollision();
 
 	private:
-		float ballSpeed = .5f;
+		float delayDuration = 2.f;
+		float elapsedTime = 0.f;
+
+		BallState currentState;
+
+		float speedMultiplier = 150.f;
+		float ballSpeed = 2.f;
 		sf::Vector2f velocity = sf::Vector2f(ballSpeed, ballSpeed);
 
 		sf::Texture pongBallTexture;
