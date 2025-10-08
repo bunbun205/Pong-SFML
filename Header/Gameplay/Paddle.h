@@ -9,6 +9,10 @@ namespace GamePlay{
 
 		void update(bool moveUpKeyPressed, bool moveDownKeyPressed);
 		void render(sf::RenderWindow* window);
+
+		sf::RectangleShape getPaddleSprite();
+		void reset(float xPos, float yPos);
+
 	private:
 		void movePaddle(bool moveUpKeyPressed, bool moveDownKeyPressed);
 
@@ -18,5 +22,8 @@ namespace GamePlay{
 		sf::RectangleShape paddleSprite;
 		const float paddleWidth = 20.f;
 		const float paddleHeight = 140.f;
+
+		const float topBoundary = 20.f;
+		const float bottomBoundary = 700.f;
 	};
 }

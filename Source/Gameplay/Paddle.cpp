@@ -11,13 +11,19 @@ namespace GamePlay{
 	}
 
 	void Paddle::movePaddle(bool moveUpKeyPressed, bool moveDownKeyPressed) {
-		if (moveUpKeyPressed)
+		if (moveUpKeyPressed && paddleSprite.getPosition().y > topBoundary)
 			paddleSprite.move(0, -paddleSpeed);
-		if (moveDownKeyPressed)
+		if (moveDownKeyPressed && paddleSprite.getPosition().y + paddleSprite.getSize().y < bottomBoundary)
 			paddleSprite.move(0, paddleSpeed);
 	}
 
 	void Paddle::render(sf::RenderWindow* window) {
 		window->draw(paddleSprite);
 	}
+
+	sf::RectangleShape Paddle::getPaddleSprite() {
+		return paddleSprite;
+	}
+
+	void Paddle::reset(float xPos, float yPos) {}
 }

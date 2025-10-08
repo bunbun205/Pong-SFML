@@ -1,4 +1,5 @@
 #pragma once
+#include "Paddle.h"
 #include "SFML/Graphics.hpp"
 
 namespace GamePlay{
@@ -6,12 +7,17 @@ namespace GamePlay{
 	public:
 		Ball();
 
-		void update();
+		void update(Paddle* paddle1, Paddle* paddle2);
 		void render(sf::RenderWindow* window);
 	private:
 		void loadTexture();
 		void initializeVariables();
 		void move();
+		void reset();
+		void onCollision(Paddle* paddle1, Paddle* paddle2);
+		void handlePaddleCollision(Paddle* paddle1, Paddle* paddle2);
+		void handleBoundaryCollision();
+		void handelOutOfBoundCollision();
 
 	private:
 		float ballSpeed = .5f;
@@ -28,5 +34,14 @@ namespace GamePlay{
 		const float radius = 10.f;
 		const float xPos = 615.f;
 		const float yPos = 335.f;
+
+		const float topBoundary = 20.f;
+		const float bottomBoundary = 700.f;
+
+		const float leftBoundary = 0.f;
+		const float rightBoundary = 1280.f;
+
+		const float centerXPos = 615.f;
+		const float centerYPos = 325.f;
 	};
 }
