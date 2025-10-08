@@ -6,7 +6,9 @@ namespace GamePlay{
 		initializeVariables();
 	}
 
-	void Ball::update() {}
+	void Ball::update() {
+		move();
+	}
 
 	void Ball::render(sf::RenderWindow* window) {
 		window->draw(pongBallSprite);
@@ -22,5 +24,9 @@ namespace GamePlay{
 		pongBallSprite.setTexture(pongBallTexture);
 		pongBallSprite.setScale(scaleX, scaleY);
 		pongBallSprite.setPosition(xPos, yPos);
+	}
+
+	void Ball::move() {
+		pongBallSprite.move(velocity);
 	}
 }

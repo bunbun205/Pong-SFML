@@ -1,7 +1,8 @@
 #include <Gameplay/GameplayManager.h>
 
 namespace GamePlay{
-	GameplayManager::GameplayManager() {
+	GameplayManager::GameplayManager(Event::EventManager* manager) {
+		eventManager = manager;
 		initialize();
 	}
 
@@ -12,7 +13,12 @@ namespace GamePlay{
 		paddle2 = new Paddle(player2XPos, player2YPos);
 	}
 
-	void GameplayManager::update() {}
+	void GameplayManager::update() {
+		ball->update();
+
+		paddle1->update(eventManager->isKeyPressed(sf::Keyboard::W), eventManager->isKeyPressed(sf::Keyboard::S));
+		paddle2->update(eventManager->isKeyPressed(sf::Keyboard::Up), eventManager->isKeyPressed(sf::Keyboard::Down));
+	}
 
 	void GameplayManager::render(sf::RenderWindow* window) {
 		ball->render(window);

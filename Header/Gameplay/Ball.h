@@ -11,7 +11,12 @@ namespace GamePlay{
 	private:
 		void loadTexture();
 		void initializeVariables();
+		void move();
+
 	private:
+		float ballSpeed = .5f;
+		sf::Vector2f velocity = sf::Vector2f(ballSpeed, ballSpeed);
+
 		sf::Texture pongBallTexture;
 		sf::Sprite pongBallSprite;
 		const std::string texturePath = "../../Assets/Textures/Ball.png";
