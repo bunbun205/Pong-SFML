@@ -8,7 +8,9 @@ namespace Core{
 		void initialize();
 		sf::RenderWindow* getGameWindow();
 		bool isGameRunning();
-		void render();
+
+		void clearGameWindow();
+		void displayGameWindow();
 	private:
 		int gameWindowWidth = 1280;
 		int gameWindowHeight = 720;

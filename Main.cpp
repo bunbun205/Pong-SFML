@@ -1,16 +1,13 @@
-#include <Core/GameWindowManger.h>
-
-#include <Event/EventManager.h>
+#include "Core/GameLoop.h"
 
 int main() {
-	Core::GameWindowManager gameWindowManager;
-	Event::EventManager eventManager;
+	Core::GameLoop gameLoop;
 
-	gameWindowManager.initialize();
-
-	while (gameWindowManager.isGameRunning()) {
-		eventManager.pollEvents(gameWindowManager.getGameWindow());
-		gameWindowManager.render();
+	gameLoop.initialize();
+	while (gameLoop.isGameRunning()) {
+		gameLoop.pollEvents();
+		gameLoop.update();
+		gameLoop.render();
 	}
 
 	return 0;
