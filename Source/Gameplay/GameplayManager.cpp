@@ -3,6 +3,8 @@
 namespace GamePlay{
 	GameplayManager::GameplayManager(Event::EventManager* manager) {
 		eventManager = manager;
+		timeService = new Utility::TimeService();
+		timeService->initialize();
 		initialize();
 	}
 
@@ -14,10 +16,11 @@ namespace GamePlay{
 	}
 
 	void GameplayManager::update() {
-		ball->update(paddle1, paddle2);
+		timeService->update();
+		ball->update(paddle1, paddle2, timeService);
 
-		paddle1->update(eventManager->isKeyPressed(sf::Keyboard::W), eventManager->isKeyPressed(sf::Keyboard::S));
-		paddle2->update(eventManager->isKeyPressed(sf::Keyboard::Up), eventManager->isKeyPressed(sf::Keyboard::Down));
+		paddle1->update(eventManager->isKeyPressed(sf::Keyboard::W), eventManager->isKeyPressed(sf::Keyboard::S), timeService);
+		paddle2->update(eventManager->isKeyPressed(sf::Keyboard::Up), eventManager->isKeyPressed(sf::Keyboard::Down), timeService);
 	}
 
 	void GameplayManager::render(sf::RenderWindow* window) {

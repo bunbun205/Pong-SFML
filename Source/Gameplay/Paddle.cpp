@@ -6,15 +6,15 @@ namespace GamePlay{
 		paddleSprite.setPosition(xPos, yPos);
 	}
 
-	void Paddle::update(bool moveUpKeyPressed, bool moveDownKeyPressed) {
-		movePaddle(moveUpKeyPressed, moveDownKeyPressed);
+	void Paddle::update(bool moveUpKeyPressed, bool moveDownKeyPressed, Utility::TimeService* timeService) {
+		movePaddle(moveUpKeyPressed, moveDownKeyPressed, timeService);
 	}
 
-	void Paddle::movePaddle(bool moveUpKeyPressed, bool moveDownKeyPressed) {
+	void Paddle::movePaddle(bool moveUpKeyPressed, bool moveDownKeyPressed, Utility::TimeService* timeService) {
 		if (moveUpKeyPressed && paddleSprite.getPosition().y > topBoundary)
-			paddleSprite.move(0, -paddleSpeed);
+			paddleSprite.move(0, -paddleSpeed * timeService->getDeltaTime() * speedMultiplier);
 		if (moveDownKeyPressed && paddleSprite.getPosition().y + paddleSprite.getSize().y < bottomBoundary)
-			paddleSprite.move(0, paddleSpeed);
+			paddleSprite.move(0, paddleSpeed * timeService->getDeltaTime() * speedMultiplier);
 	}
 
 	void Paddle::render(sf::RenderWindow* window) {

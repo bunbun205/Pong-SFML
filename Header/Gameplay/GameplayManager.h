@@ -3,6 +3,7 @@
 #include "Event/EventManager.h"
 #include "Gameplay/Ball.h"
 #include "Gameplay/Paddle.h"
+#include "Utility/TimeService.h"
 
 namespace GamePlay{
 	class GameplayManager {
@@ -18,6 +19,7 @@ namespace GamePlay{
 
 	private:
 		Event::EventManager* eventManager;
+		Utility::TimeService* timeService;
 		Ball* ball;
 		Paddle* paddle1;
 		Paddle* paddle2;
