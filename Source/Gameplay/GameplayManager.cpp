@@ -5,6 +5,7 @@ namespace GamePlay{
 		eventManager = manager;
 		timeService = new Utility::TimeService();
 		timeService->initialize();
+		uiService = new UI::UIService();
 		initialize();
 	}
 
@@ -28,5 +29,6 @@ namespace GamePlay{
 		ball->render(window);
 		paddle1->render(window);
 		paddle2->render(window);
+		uiService->render(window);
 	}
 } // GamePlay

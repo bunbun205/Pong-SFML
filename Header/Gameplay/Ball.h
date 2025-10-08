@@ -25,7 +25,7 @@ namespace GamePlay{
 		void handelOutOfBoundCollision();
 
 	private:
-		float delayDuration = 2.f;
+		float delayDuration = 1.f;
 		float elapsedTime = 0.f;
 
 		BallState currentState;
