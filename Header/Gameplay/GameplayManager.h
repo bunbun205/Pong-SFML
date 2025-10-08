@@ -3,6 +3,7 @@
 #include "Event/EventManager.h"
 #include "Gameplay/Ball.h"
 #include "Gameplay/Paddle.h"
+#include "UI/UIService.h"
 #include "Utility/TimeService.h"
 
 namespace GamePlay{
@@ -12,6 +13,8 @@ namespace GamePlay{
 
 	private:
 		void initialize();
+		void updateScore();
+		void resetPlayers();
 
 	public:
 		void update();
@@ -20,6 +23,7 @@ namespace GamePlay{
 	private:
 		Event::EventManager* eventManager;
 		Utility::TimeService* timeService;
+		UI::UIService* uiService;
 		Ball* ball;
 		Paddle* paddle1;
 		Paddle* paddle2;
