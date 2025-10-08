@@ -1,11 +1,13 @@
 #pragma once
+#include "Boundary.h"
+#include "Event/EventManager.h"
 #include "Gameplay/Ball.h"
 #include "Gameplay/Paddle.h"
 
 namespace GamePlay{
 	class GameplayManager {
 	public:
-		GameplayManager();
+		GameplayManager(Event::EventManager* manager);
 
 	private:
 		void initialize();
@@ -15,9 +17,11 @@ namespace GamePlay{
 		void render(sf::RenderWindow* window);
 
 	private:
+		Event::EventManager* eventManager;
 		Ball* ball;
 		Paddle* paddle1;
 		Paddle* paddle2;
+		Boundary* boundary;
 
 		float player1XPos = 40.f;
 		float player1YPos = 300.f;
