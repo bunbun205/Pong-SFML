@@ -4,6 +4,12 @@ namespace UI{
 	UIService::UIService() {
 		initialize();
 	}
+
+	void UIService::update() {
+		leftScoreText.setString(formatScore(player1Score));
+		rightScoreText.setString(formatScore(player2Score));
+	}
+
 	void UIService::initialize() {
 		loadFontTexture();
 		createLeftScoreText();
@@ -33,5 +39,17 @@ namespace UI{
 		rightScoreText.setCharacterSize(fontSize);
 		rightScoreText.setFillColor(fontColor);
 		rightScoreText.setPosition(rightScoreXPos, rightScoreYPos);
+	}
+
+	std::string UIService::formatScore(int score) {
+		return (score < 10 ? "0" : "") + std::to_string(score);
+	}
+
+	void UIService::incrementPlayer1Score() {
+		player1Score++;
+	}
+
+	void UIService::incrementPlayer2Score() {
+		player2Score++;
 	}
 } // UI

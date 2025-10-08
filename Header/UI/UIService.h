@@ -6,12 +6,18 @@ namespace UI{
 	class UIService {
 	public:
 		UIService();
+
+		void update();
 		void render(sf::RenderWindow* window);
 	private:
 		void initialize();
 		void loadFontTexture();
 		void createLeftScoreText();
 		void createRightScoreText();
+		std::string formatScore(int score);
+
+		void incrementPlayer1Score();
+		void incrementPlayer2Score();
 	private:
 		sf::Font font;
 		sf::Text leftScoreText;
