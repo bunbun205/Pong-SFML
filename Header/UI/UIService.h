@@ -9,6 +9,10 @@ namespace UI{
 
 		void update();
 		void render(sf::RenderWindow* window);
+
+		void incrementPlayer1Score();
+		void incrementPlayer2Score();
+
 	private:
 		void initialize();
 		void loadFontTexture();
@@ -16,8 +20,6 @@ namespace UI{
 		void createRightScoreText();
 		std::string formatScore(int score);
 
-		void incrementPlayer1Score();
-		void incrementPlayer2Score();
 	private:
 		sf::Font font;
 		sf::Text leftScoreText;

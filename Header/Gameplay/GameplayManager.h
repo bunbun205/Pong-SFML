@@ -13,6 +13,8 @@ namespace GamePlay{
 
 	private:
 		void initialize();
+		void updateScore();
+		void resetPlayers();
 
 	public:
 		void update();

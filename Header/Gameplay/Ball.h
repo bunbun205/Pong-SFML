@@ -13,6 +13,12 @@ namespace GamePlay{
 
 		void update(Paddle* paddle1, Paddle* paddle2, Utility::TimeService* timeService);
 		void render(sf::RenderWindow* window);
+
+		bool isLeftCollisionOccured();
+		void updateLeftCollisionState(bool value);
+
+		bool isRightCollisionOccured();
+		void updateRightCollisionState(bool value);
 	private:
 		void loadTexture();
 		void initializeVariables();
@@ -25,6 +31,9 @@ namespace GamePlay{
 		void handelOutOfBoundCollision();
 
 	private:
+		bool hadLeftCollision = false;
+		bool hadRightCollision = false;
+
 		float delayDuration = 1.f;
 		float elapsedTime = 0.f;
 

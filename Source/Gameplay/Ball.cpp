@@ -16,6 +16,21 @@ namespace GamePlay{
 		window->draw(pongBallSprite);
 	}
 
+	bool Ball::isLeftCollisionOccured() {
+		return hadLeftCollision;
+	}
+
+	void Ball::updateLeftCollisionState(bool value) {
+		hadLeftCollision = value;
+	}
+
+	bool Ball::isRightCollisionOccured() {
+		return hadRightCollision;
+	}
+	void Ball::updateRightCollisionState(bool value) {
+		hadRightCollision = value;
+	}
+
 	void Ball::loadTexture() {
 		if (!pongBallTexture.loadFromFile(texturePath)) {
 			throw std::runtime_error("Failed to load ball texture");
@@ -87,7 +102,13 @@ namespace GamePlay{
 	void Ball::handelOutOfBoundCollision() {
 		sf::FloatRect ballRect = pongBallSprite.getGlobalBounds();
 
-		if (ballRect.left <= leftBoundary) reset();
-		else if (ballRect.left + ballRect.width >= rightBoundary) reset();
+		if (ballRect.left <= leftBoundary) {
+			updateLeftCollisionState(true);
+			reset();
+		}
+		else if (ballRect.left + ballRect.width >= rightBoundary) {
+			updateRightCollisionState(true);
+			reset();
+		}
 	}
 }
