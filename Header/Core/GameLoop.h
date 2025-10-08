@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/GameWindowManger.h"
 #include "Event/EventManager.h"
+#include "Gameplay/GameplayManager.h"
 
 namespace Core{
 	class GameLoop {
@@ -13,5 +14,6 @@ namespace Core{
 	private:
 		GameWindowManager* gameWindowManager;
 		Event::EventManager* eventManager;
+		GamePlay::GameplayManager* gameplayManager;
 	};
 }
